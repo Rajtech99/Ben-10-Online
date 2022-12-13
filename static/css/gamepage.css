@@ -1,0 +1,30 @@
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+#rotating {
+    animation: rotation 8s infinite linear;
+  }
+  
+  @keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  }
+
+#txt{
+  font-family: 'Macondo', cursive;
+}
+
+#namestyle{
+  font-family: 'Koulen', cursive;
+}
+
+h1{
+  font-family: 'Josefin Sans', sans-serif;
+}

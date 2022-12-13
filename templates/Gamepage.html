@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Macondo&family=Tapestry&family=Water+Brush&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='assets/img/playgame.webp') }}" />
+
+    <title>Alien 10 Fight Room</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/gamepage.css')}}">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Koulen&family=Macondo&family=Tapestry&family=Water+Brush&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Koulen&family=Macondo&family=Tapestry&family=Water+Brush&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <form action="/gameplay" method="POST">
+        <h1 class="text-center text-dark mt-0 py-2 bg-success bg-opacity-50">Alien 10 Fighting Room</h1>
+        <div class="container my-2">
+            <img src="static/assets/images/{{my_aliens}}" height="180px" width="180px"
+                class="rounded mx-auto my-1 d-block" alt="Your Alien">
+            <h3 class="text-center m-0 text-danger" id="namestyle">{{name}}</h3>
+            <p class="text-center m-0"><b>Master: </b>{{user_name}}</p>
+            <p class="text-center m-0"><b>Best Attack: </b>{{best_power}}</p>
+            <p class="text-center m-0"><b>Abilities: </b>{{abilites}}</p>
+            <img src="{{ url_for('static', filename='assets/img/vs.jpg')}}" height="70px" width="150px"
+                class="rounded mx-auto my-2 d-block" alt="VS">
+            <img src="static/assets/images/{{pc_aliens}}" height="180px" width="180px"
+                class="rounded mx-auto my-1 d-block" alt="Opponent's Alien">
+            <p class="text-center m-0"><b>Master: </b>{{pc_name}}</p>
+            <p class="text-center m-0"><b>Best Attack: </b>---</p>
+            <p class="text-center m-0"><b>Abilities: </b>---</p>
+        </div>
+        <div class="d-grid gap-2 col-6 mx-auto mt-0">
+            <button type="button" class="btn btn-danger mb-1" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                Fight
+            </button>
+            <a class="btn btn-primary mb-1" href="/select-alien-10" role="button">Next Match</a>
+            <a class="btn btn-warning mb-1" href="https://ben10.fandom.com/wiki/Category:Classic_Aliens" target="_blank"
+                role="button">Online Help</a>
+        </div>
+    </form>
+    {% if my_aliens == pc_aliens %}
+    <div class="modal fade bg-secondary" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel"><b>Fight Result</b></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h2 class="text-center mt-0">Match Tie!</h2>
+                    <img src="https://i.pinimg.com/originals/ac/8f/a6/ac8fa6e5977b2561eda998f80f5fa655.png"
+                        height="150px" width="150px" class="rounded mx-auto d-block" alt="Tie">
+                    <h3 class="text-center" id="namestyle"><b>Master: </b>{{user_name}}</h3>
+                    <p class="m-0 text-center"><b>Today: </b>{{Today}}</p>
+                    <p class="m-0 text-center"><b>Opponent: </b>{{pc_name}}</p>
+                    <p class="m-0 text-center"><b>Alien Buddy: </b>{{name}}</p>
+                    <p class="m-0 text-center"><b>Match Details: </b>Both have selected the same alien.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if pc_aliens == 'villan3.jpg' or pc_aliens == 'villan3.webp' or pc_aliens == 'villan2.webp' or pc_aliens
+    =='Vilgax.webp' or pc_aliens == 'vilan.png' or pc_aliens == 'Hex.webp' or pc_aliens == 'kevin.webp' %}
+    <div class="modal fade bg-success" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel"><b>Fight Result</b></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h2 class="text-center mt-0 fw-bold text-success">Winner! Winner! Winner!</h2>
+                    <img src="https://i.pinimg.com/736x/4a/08/30/4a083000a80262e2ccd897a6f7bfbd36.jpg" height="150px"
+                        width="150px" class="rounded mx-auto d-block" alt="Winner">
+                    <h3 class="text-center" id="namestyle"><b>Master: </b>{{user_name}}</h3>
+                    <p class="m-0 text-center"><b>Today: </b>{{Today}}</p>
+                    <p class="m-0 text-center"><b>Opponent: </b>{{pc_name}}</p>
+                    <p class="m-0 text-center"><b>Alien Buddy: </b>{{name}}</p>
+                    <p class="m-0 text-center"><b>Match Details: </b>You win the match.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if pc_aliens == 'agro.webp'
+    or pc_aliens == 'agrog.webp'
+    or pc_aliens == 'alienx.jpg'
+    or pc_aliens == 'ar.webp'
+    or pc_aliens == 'Bloxx.webp'
+    or pc_aliens == 'clockword.webp'
+    or pc_aliens == 'cm.webp'
+    or pc_aliens == 'NRG.webp'
+    or pc_aliens == 'Sk.webp'
+    or pc_aliens == 'uecho.webp'
+    or pc_aliens == 'US.webp'
+    or pc_aliens == 'waybig.webp'
+    or pc_aliens == 'uhew.webp'
+    or pc_aliens == 'ubigchill.webp'
+    or pc_aliens=='uwildmutt.webp'
+    or pc_aliens=='usp.jpg'
+    or pc_aliens=='ucannon.webp'
+    or my_aliens == 'hew.webp' and pc_aliens=='echo.webp'
+    or my_aliens == 'hew.webp' and pc_aliens=='goom.webp'
+    or my_aliens == 'hew.webp' and pc_aliens=='Jetray.webp'
+    or my_aliens == 'hew.webp' and pc_aliens=='stink.webp'
+    or my_aliens == 'hew.webp' and pc_aliens=='swam.jpg'
+    or my_aliens == 'wildmutt.jpg' and pc_aliens=='bigchill.webp'
+    or my_aliens == 'wildmutt.jpg' and pc_aliens=='echo.webp'
+    or my_aliens == 'wildmutt.jpg' and pc_aliens=='goom.webp'
+    or my_aliens == 'wildmutt.jpg' and pc_aliens=='Jetray.webp'
+    or my_aliens == 'wildmutt.jpg' and pc_aliens=='stink.webp'
+    or my_aliens == 'wildmutt.jpg' and pc_aliens=='swam.jpg'
+    or my_aliens == 'wildmutt.jpg' and pc_aliens=='hew.webp'
+    or my_aliens == 'wildmutt.jpg' and pc_aliens=='ele.webp'
+    or my_aliens == 'wildmutt.jpg' and pc_aliens=='heat.webp'
+    or my_aliens == 'wildmutt.jpg' and pc_aliens=='croma.webp'
+    or my_aliens == 'wildmutt.jpg' and pc_aliens=='Buzzshock.webp'
+    or my_aliens == 'wildmutt.jpg' and pc_aliens=='4arms.webp'
+    or my_aliens == 'wildmutt.jpg' and pc_aliens=='dimond head.jpg'
+    or my_aliens == 'wildmutt.jpg' and pc_aliens=='rath.webp'
+    or my_aliens == 'swam.jpg' and pc_aliens=='stink.webp'
+    or my_aliens == 'swam.jpg' and pc_aliens=='echo.webp'
+    or my_aliens == 'swam.jpg' and pc_aliens=='goom.webp'
+    or my_aliens == 'echo.webp' and pc_aliens=='Lodestar.webp'
+    or my_aliens == 'echo.webp' and pc_aliens=='goom.webp'
+    or my_aliens == 'echo.webp' and pc_aliens=='swam.jpg'
+    or my_aliens == 'cannon.webp' and pc_aliens=='swam.jpg'
+    or my_aliens == 'cannon.webp' and pc_aliens=='Jetray.webp'
+    or my_aliens == 'cannon.webp' and pc_aliens=='hew.webp'
+    or my_aliens == 'cannon.webp' and pc_aliens=='heat.webp'
+    or my_aliens == 'cannon.webp' and pc_aliens=='eatle.webp'
+    or my_aliens == 'cannon.webp' and pc_aliens=='goom.webp'
+    or my_aliens == 'cannon.webp' and pc_aliens=='echo.webp'
+    or my_aliens == 'cannon.webp' and pc_aliens=='ele.webp'
+    or my_aliens == 'cannon.webp' and pc_aliens=='bigchill.webp'
+    or my_aliens == 'cannon.webp' and pc_aliens=='Buzzshock.webp'
+    or my_aliens == 'sp.webp' and pc_aliens=='bigchill.webp'
+    or my_aliens == 'sp.webp' and pc_aliens=='croma.webp'
+    or my_aliens == 'sp.webp' and pc_aliens=='dimond head.jpg'
+    or my_aliens == 'sp.webp' and pc_aliens=='ele.webp'
+    or my_aliens == 'sp.webp' and pc_aliens=='echo.webp'
+    or my_aliens == 'sp.webp' and pc_aliens=='heat.webp'
+    or my_aliens == 'sp.webp' and pc_aliens=='hew.webp'
+    or my_aliens == 'sp.webp' and pc_aliens=='Jetray.webp'
+    or my_aliens == 'sp.webp' and pc_aliens=='goom.webp'
+    or my_aliens == 'sp.webp' and pc_aliens=='Lodestar.webp'
+    or my_aliens == 'sp.webp' and pc_aliens=='swam.jpg'
+    or my_aliens == 'bigchill.webp' and pc_aliens=='goom.webp'
+    or my_aliens == 'bigchill.webp' and pc_aliens=='croma.webp'
+    or my_aliens == 'bigchill.webp' and pc_aliens=='echo.webp'
+    or my_aliens == 'bigchill.webp' and pc_aliens=='ele.webp'
+    or my_aliens == 'bigchill.webp' and pc_aliens=='heat.webp'
+    or my_aliens == 'bigchill.webp' and pc_aliens=='swam.jpg'
+    or my_aliens == 'spin.webp' and pc_aliens=='4arms.webp'
+    or my_aliens == 'spin.webp' and pc_aliens=='hew.webp'
+    or my_aliens == 'spin.webp' and pc_aliens=='bigchill.webp'
+    or my_aliens == 'spin.webp' and pc_aliens=='Buzzshock.webp'
+    or my_aliens == 'spin.webp' and pc_aliens=='echo.webp'
+    or my_aliens == 'spin.webp' and pc_aliens=='ele.webp'
+    or my_aliens == 'spin.webp' and pc_aliens=='eye.webp'
+    or my_aliens == 'spin.webp' and pc_aliens=='Lodestar.webp'
+    or my_aliens == 'spin.webp' and pc_aliens=='swam.jpg'
+    or my_aliens == 'spin.webp' and pc_aliens=='dimond head.jpg'
+    or my_aliens == 'spin.webp' and pc_aliens=='rath.webp'
+    or my_aliens == 'ele.webp' and pc_aliens=='echo.webp'
+    or my_aliens == 'ele.webp' and pc_aliens=='croma.webp'
+    or my_aliens == 'ele.webp' and pc_aliens=='swam.jpg'
+    or my_aliens == 'ele.webp' and pc_aliens=='dimond head.jpg'
+    or my_aliens == 'water.jpg' and pc_aliens=='4arms.webp'
+    or my_aliens == 'water.jpg' and pc_aliens=='bigchill.webp'
+    or my_aliens == 'water.jpg' and pc_aliens=='brain.webp'
+    or my_aliens == 'water.jpg' and pc_aliens=='Buzzshock.webp'
+    or my_aliens == 'water.jpg' and pc_aliens=='cannon.webp'
+    or my_aliens == 'water.jpg' and pc_aliens=='echo.webp'
+    or my_aliens == 'water.jpg' and pc_aliens=='ele.webp'
+    or my_aliens == 'water.jpg' and pc_aliens=='rath.webp'
+    or my_aliens == 'water.jpg' and pc_aliens=='Jetray.webp'
+    or my_aliens == 'water.jpg' and pc_aliens=='swam.jpg'
+    or my_aliens == 'brain.webp' and pc_aliens=='hew.webp'
+    or my_aliens == 'brain.webp' and pc_aliens=='4arms.webp'
+    or my_aliens == 'brain.webp' and pc_aliens=='croma.webp'
+    or my_aliens == 'brain.webp' and pc_aliens=='dimond head.jpg'
+    or my_aliens == 'brain.webp' and pc_aliens=='echo.webp'
+    or my_aliens == 'brain.webp' and pc_aliens=='Jetray.webp'
+    or my_aliens == 'brain.webp' and pc_aliens=='Lodestar.webp'
+    or my_aliens == 'brain.webp' and pc_aliens=='stink.webp'
+    or my_aliens == 'brain.webp' and pc_aliens=='swam.jpg'
+    or my_aliens == 'brain.webp' and pc_aliens=='spin.webp'
+    or my_aliens == 'Jetray.webp' and pc_aliens=='bigchill.webp'
+    or my_aliens == 'Jetray.webp' and pc_aliens=='croma.webp'
+    or my_aliens == 'Jetray.webp' and pc_aliens=='ele.webp'
+    or my_aliens == 'Jetray.webp' and pc_aliens=='hew.webp'
+    or my_aliens == 'Jetray.webp' and pc_aliens=='swam.jpg'
+    or my_aliens == 'goom.webp' and pc_aliens=='echo.webp'
+    or my_aliens == 'goom.webp' and pc_aliens=='bigchill.webp'
+    or my_aliens == 'heat.webp' and pc_aliens=='bigchill.webp'
+    or my_aliens == 'heat.webp' and pc_aliens=='dimond head.jpg'
+    or my_aliens == 'heat.webp' and pc_aliens=='Rip.webp'
+    or my_aliens == 'heat.webp' and pc_aliens=='spin.webp'
+    or my_aliens == 'heat.webp' and pc_aliens=='water.jpg'
+    or my_aliens == 'eatle.webp' and pc_aliens=='swam.jpg'
+    or my_aliens == 'eatle.webp' and pc_aliens=='bigchill.webp'
+    or my_aliens == 'eatle.webp' and pc_aliens=='hew.webp'
+    or my_aliens == 'eatle.webp' and pc_aliens=='echo.webp'
+    or my_aliens == 'Lodestar.webp' and pc_aliens=='4arms.webp'
+    or my_aliens == 'Lodestar.webp' and pc_aliens=='hew.webp'
+    or my_aliens == 'Lodestar.webp' and pc_aliens=='bigchill.webp'
+    or my_aliens == 'Lodestar.webp' and pc_aliens=='swam.jpg'
+    or my_aliens == 'Lodestar.webp' and pc_aliens=='echo.webp'
+    or my_aliens == 'Lodestar.webp' and pc_aliens=='heat.webp'
+    or my_aliens == 'Lodestar.webp' and pc_aliens=='Jetray.webp'
+    or my_aliens == 'croma.webp' and pc_aliens=='hew.webp'
+    or my_aliens == 'croma.webp' and pc_aliens=='bigchill.webp'
+    or my_aliens == 'croma.webp' and pc_aliens=='echo.webp'
+    or my_aliens == 'croma.webp' and pc_aliens=='ele.webp'
+    or my_aliens == 'croma.webp' and pc_aliens=='heat.webp'
+    or my_aliens == 'croma.webp' and pc_aliens=='dimond head.jpg'
+    or my_aliens == 'croma.webp' and pc_aliens=='swam.jpg'
+    or my_aliens == 'xlr8.png' and pc_aliens=='swam.jpg'
+    or my_aliens == 'xlr8.png' and pc_aliens=='echo.webp'
+    or my_aliens == 'xlr8.png' and pc_aliens=='goom.webp'
+    or my_aliens == 'xlr8.png' and pc_aliens=='ele.webp'
+    or my_aliens == 'stink.webp' and pc_aliens=='bigchill.webp'
+    or my_aliens == 'stink.webp' and pc_aliens=='echo.webp'
+    or my_aliens == 'stink.webp' and pc_aliens=='heat.webp'
+    or my_aliens == 'stink.webp' and pc_aliens=='water.jpg'
+    or my_aliens == 'stink.webp' and pc_aliens=='Jetray.webp'
+    or my_aliens == 'eye.webp' and pc_aliens=='4arms.webp'
+    or my_aliens == 'eye.webp' and pc_aliens=='hew.webp'
+    or my_aliens == 'eye.webp' and pc_aliens=='echo.webp'
+    or my_aliens == 'eye.webp' and pc_aliens=='Jetray.webp'
+    or my_aliens == 'eye.webp' and pc_aliens=='bigchill.webp'
+    or my_aliens == 'eye.webp' and pc_aliens=='ele.webp'
+    or my_aliens == 'eye.webp' and pc_aliens=='rath.webp'
+    or my_aliens == 'eye.webp' and pc_aliens=='goom.webp'
+    or my_aliens == 'eye.webp' and pc_aliens=='heat.webp'
+    or my_aliens == 'eye.webp' and pc_aliens=='swam.jpg'
+    or my_aliens == '4arms.webp' and pc_aliens=='heat.webp'
+    or my_aliens == '4arms.webp' and pc_aliens=='bigchill.webp'
+    or my_aliens == '4arms.webp' and pc_aliens=='echo.webp'
+    or my_aliens == '4arms.webp' and pc_aliens=='ele.webp'
+    or my_aliens == '4arms.webp' and pc_aliens=='hew.webp'
+    or my_aliens == '4arms.webp' and pc_aliens=='swam.jpg'
+    or my_aliens == 'Rip.webp' and pc_aliens=='4arms.webp'
+    or my_aliens == 'Rip.webp' and pc_aliens=='brain.webp'
+    or my_aliens == 'Rip.webp' and pc_aliens=='Buzzshock.webp'
+    or my_aliens == 'Rip.webp' and pc_aliens=='echo.webp'
+    or my_aliens == 'Rip.webp' and pc_aliens=='ele.webp'
+    or my_aliens == 'Rip.webp' and pc_aliens=='hew.webp'
+    or my_aliens == 'Rip.webp' and pc_aliens=='Jetray.webp'
+    or my_aliens == 'Rip.webp' and pc_aliens=='rath.webp'
+    or my_aliens == 'Rip.webp' and pc_aliens=='swam.jpg'
+    or my_aliens == 'Rip.webp' and pc_aliens=='wildmutt.jpg'
+    or my_aliens == 'Rip.webp' and pc_aliens=='dimond head.jpg'
+    or my_aliens == 'Buzzshock.webp' and pc_aliens=='echo.webp'
+    or my_aliens == 'Buzzshock.webp' and pc_aliens=='heat.webp'
+    or my_aliens == 'Buzzshock.webp' and pc_aliens=='hew.webp'
+    or my_aliens == 'Buzzshock.webp' and pc_aliens=='swam.jpg'
+    or my_aliens == 'Buzzshock.webp' and pc_aliens=='dimond head.jpg'
+    or my_aliens == 'Buzzshock.webp' and pc_aliens=='wildmutt.jpg'
+    or my_aliens == 'grey.webp' %}
+    <div class="modal fade bg-danger" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel"><b>Fight Result</b></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h2 class="text-center mt-0 fw-bold text-danger">Worst!</h2>
+                    <img src="{{ url_for('static', filename='assets/img/lose.jpg')}}" height="150px" width="150px"
+                        class="rounded mx-auto d-block" alt="Winner">
+                    <h3 class="text-center" id="namestyle"><b>Master: </b>{{user_name}}</h3>
+                    <p class="m-0 text-center"><b>Today: </b>{{Today}}</p>
+                    <p class="m-0 text-center"><b>Opponent: </b>{{pc_name}}</p>
+                    <p class="m-0 text-center"><b>Alien Buddy: </b>{{name}}</p>
+                    <p class="m-0 text-center"><b>Match Details: </b>Opponent win the match.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="modal fade bg-success" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel"><b>Fight Result</b></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h2 class="text-center mt-0 fw-bold text-success">Winner! Winner! Winner!</h2>
+                    <img src="{{ url_for('static', filename='assets/img/winner.jpg')}}" height="150px" width="150px"
+                        class="rounded mx-auto d-block" alt="Winner">
+                    <h3 class="text-center" id="namestyle"><b>Master: </b>{{user_name}}</h3>
+                    <p class="m-0 text-center"><b>Today: </b>{{Today}}</p>
+                    <p class="m-0 text-center"><b>Opponent: </b>{{pc_name}}</p>
+                    <p class="m-0 text-center"><b>Alien Buddy: </b>{{name}}</p>
+                    <p class="m-0 text-center"><b>Match Details: </b>You win the match.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <footer class="bg-black text-center py-3 mt-1">
+        <div class="container px-5">
+            <div class="text-white-50 small">
+                <p class="m-0 text-center text-white">Copyright &copy; Alien 10 Online 2022</p>
+                <a href="https://rajtech99.blogspot.com" target="_blank">RajTech99 Only Technology</a>
+            </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

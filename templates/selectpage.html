@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Alien 10 Online Shop</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='assets/img/playgame.webp') }}" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='css/selectpage.css') }}" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{{ url_for('static', filename='assets/img/Ben10.jpg')}}" class="d-block w-100"
+                    alt="Ben10">
+            </div>
+            <div class="carousel-item">
+                <img src="{{ url_for('static', filename='assets/img/ben10one.jpg')}}"
+                    class="d-block w-100" alt="Ben10">
+            </div>
+            <div class="carousel-item">
+                <img src="{{ url_for('static', filename='assets/img/ben10two.jpg')}}"
+                    class="d-block w-100" alt="Ben10">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <h3 class="text-center my-1">Alien 10 Online Shop</h3>
+    {% if no_of_aliens > 1%}
+    <div class="alert alert-danger d-flex align-items-center mx-3" role="alert">
+        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+            <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                <path
+                    d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+            </symbol>
+            <use xlink:href="#exclamation-triangle-fill" />
+        </svg>
+        <div>
+            <b>You Select More than 1 Alien.</b><br>Please Select only 1 Alien.
+        </div>
+    </div>
+    {% endif %}
+    {% if no_of_aliens == 0 %}
+    <div class="alert alert-primary d-flex align-items-center mx-3" role="alert">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+            class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img"
+            aria-label="Warning:">
+            <path
+                d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+        </svg>
+        <div>
+            <b>Please Select Your Alien.</b>
+        </div>
+    </div>
+    <div class="d-flex align-items-center mx-3">
+        <strong>Opponent Still Choosing...</strong>
+        <div class="spinner-border text-warning ms-auto" role="status" aria-hidden="true"></div>
+    </div>
+    {% endif %}
+    <form action="/select-alien-10" method="POST">
+        <div class="mb-3 mx-3">
+            <label for="exampleInputEmail1" class="form-label text-success"><b>Register your name:</b></label>
+            <input type="text" class="form-control" name="user_name" id="exampleInputEmail1"
+                aria-describedby="emailHelp">
+        </div>
+        <section class="py-0">
+            <div class="container px-4 px-lg-5 mt-1">
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" height="150px"
+                                src="{{ url_for('static', filename='assets/images/hew.webp')}}" alt="Humungousaur" />
+                            <div class="card-body p-2">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Humungousaur</h5>
+                                    <b>Type: </b>Ground<br>
+                                    <b class="text-warning">Rare</b>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><b>Select this -</b><br><input
+                                        class="btn btn-outline-dark mt-auto" type="checkbox" id="ben" name="ben"
+                                        value="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" height="150px"
+                                src="{{ url_for('static', filename='assets/images/uhew.webp')}}" alt="Ultimate Humungousaur" />
+                            <div class="card-body p-2">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Ultimate Humungousaur</h5>
+                                    <b>Type: </b>Ground<br>
+                                    <b class="text-danger">Epic</b>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><b>Select this -</b><br><i class="bi bi-lock-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" height="150px"
+                                src="{{ url_for('static', filename='assets/images/wildmutt.jpg')}}" alt="Wildmutt" />
+                            <div class="card-body p-2">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Wildmutt</h5>
+                                    <b>Type: </b>Ground<br>
+                                    <b class="text-success">Normal</b>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><b>Select this -</b><br><input
+                                        class="btn btn-outline-dark mt-auto" type="checkbox" id="ben71" name="ben71"
+                                        value="71">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" height="150px"
+                                src="{{ url_for('static', filename='assets/images/uwildmutt.webp')}}" alt="Ultimate Wildmutt" />
+                            <div class="card-body p-2">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Ultimate Wildmutt</h5>
+                                    <b>Type: </b>Ground<br>
+                                    <b class="text-warning">Rare</b>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><b>Select this -</b><br><i class="bi bi-lock-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" height="150px"
+                                src="{{ url_for('static', filename='assets/images/swam.jpg')}}" alt="Swampfire" />
+                            <div class="card-body p-2">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Swampfire</h5>
+                                    <b>Type: </b>Grass/Fire/Ground<br>
+                                    <b class="text-warning">Rare</b>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><b>Select this -</b><br><input
+                                        class="btn btn-outline-dark mt-auto" type="checkbox" id="ben2" name="ben2"
+                                        value="2">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" height="150px"
+                                src="{{ url_for('static', filename='assets/images/US.webp')}}" alt="Ultimate Swampfire" />
+                            <div class="card-body p-2">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Ultimate Swampfire</h5>
+                                    <b>Type: </b>Grass/Fire/Ground<br>
+                                    <b class="text-danger">Epic</b>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><b>Select this -</b><br><i class="bi bi-lock-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" height="150px"
+                                src="{{ url_for('static', filename='assets/images/echo.webp')}}" alt="Echo Echo" />
+                            <div class="card-body p-2">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Echo Echo</h5>
+                                    <b>Type: </b>Sonic<br>
+                                    <b class="text-warning">Rare</b>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><b>Select this -</b><br><input
+                                        class="btn btn-outline-dark mt-auto" type="checkbox" id="ben4" name="ben4"
+                                        value="4">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" height="150px"
+                                src="{{ url_for('static', filename='assets/images/uecho.webp')}}" alt="Ultimate Echo Echo" />
+                            <div class="card-body p-2">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Ultimate Echo Echo</h5>
+                                    <b>Type: </b>Sonic/Air<br>
+                                    <b class="text-warning">Rare</b>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><b>Select this -</b><br><i class="bi bi-lock-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" height="150px"
+                                src="{{ url_for('static', filename='assets/images/cannon.webp')}}" alt="Cannonbolt" />
+                            <div class="card-body p-2">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Cannonbolt</h5>
+                                    <b>Type: </b>Ground<br>
+                                    <b class="text-warning">Rare</b>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><b>Select this -</b><br><input
+                                        class="btn btn-outline-dark mt-auto" type="checkbox" id="ben6" name="ben6"
+                                        value="6">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" height="150px"
+                                src="{{ url_for('static', filename='assets/images/ucannon.webp')}}" alt="Ultimate Cannonbolt" />
+                            <div class="card-body p-2">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Ultimate Cannonbolt</h5>
+                                    <b>Type: </b>Steel<br>
+                                    <b class="text-warning">Rare</b>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><b>Select this -</b><br><i class="bi bi-lock-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" height="150px"
+                                src="{{ url_for('static', filename='assets/images/sp.webp')}}" alt="Spidermonkey" />
+                            <div class="card-body p-2">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Spider Monkey</h5>
+                                    <b>Type: </b>Ground<br>
+                                    <b class="text-warning">Rare</b>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><b>Select this -</b><br><input
+                                        class="btn btn-outline-dark mt-auto" type="checkbox" id="ben8" name="ben8"
+                                        value="8">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" height="150px"
+                                src="{{ url_for('static', filename='assets/images/usp.jpg')}}" alt="Ultimate Spidermonkey" />
+                            <div class="card-body p-2">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Ultimate Spider Monkey</h5>
+                                    <b>Type: </b>Ground<br>
+                                    <b class="text-warning">Rare</b>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><b>Select this -</b><br><i class="bi bi-lock-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" height="150px"
+                                src="{{ url_for('static', filename='assets/images/bigchill.webp')}}" alt="Bigchill" />
+                            <div class="card-body p-2">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Bigchill</h5>
+                                    <b>Type: </b>Ice/Air<br>
+                                    <b class="text-warning">Rare</b>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><b>Select this -</b><br><input
+                                        class="btn btn-outline-dark mt-auto" type="checkbox" id="ben10" name="ben10"
+                                        value="10">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" height="150px"
+                                src="{{ url_for('static', filename='assets/images/ubigchill.webp')}}" alt="Ultimate Bigchill" />
+                            <div class="card-body p-2">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Ultimate Bigchill</h5>
+                                    <b>Type: </b>Ice/Air<br>
+                                    <b class="text-danger">Epic</b>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><b>Select this -</b><br><i class="bi bi-lock-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" height="150px"
+                                src="{{ url_for('static', filename='assets/images/waybig.webp')}}" alt="Waybig" />
+                            <div class="card-body p-2">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Way Big</h5>
+                                    <b>Type: </b>Ground<br>
+                                    <b class="text-danger">Epic</b>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><b>Select this -</b><br><i class="bi bi-lock-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" height="150px"
+                                src="{{ url_for('static', filename='assets/images/spin.webp')}}" alt="Terraspin" />
+                            <div class="card-body p-2">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Terraspin</h5>
+                                    <b>Type: </b>Ground/Air<br>
+                                    <b class="text-warning">Rare</b>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><b>Select this -</b><br><input
+                                        class="btn btn-outline-dark mt-auto" type="checkbox" id="ben13" name="ben13"
+                                        value="13">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" height="150px"
+                                src="{{ url_for('static', filename='assets/images/ele.webp')}}" alt="Ampfibian" />
+                            <div class="card-body p-2">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Ampfibian</h5>
+                                    <b>Type: </b>Electric/Air<br>
+                                    <b class="text-warning">Rare</b>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><b>Select this -</b><br><input
+                                        class="btn btn-outline-dark mt-auto" type="checkbox" id="ben14" name="ben14"
+                                        value="14">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" height="150px"
+                                src="{{ url_for('static', filename='assets/images/water.jpg')}}" alt="Water Hazard" />
+                            <div class="card-body p-2">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Water Hazard</h5>
+                                    <b>Type: </b>Water<br>
+                                    <b class="text-warning">Rare</b>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><b>Select this -</b><br><input
+                                        class="btn btn-outline-dark mt-auto" type="checkbox" id="ben15" name="ben15"
+                                        value="15">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" height="150px"
+                                src="{{ url_for('static', filename='assets/images/Bloxx.webp')}}" alt="Bloxx" />
+                            <div class="card-body p-2">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Bloxx</h5>
+                                    <b>Type: </b>Special<br>
+                                    <b class="text-danger">Epic</b>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><b>Select this -</b><br><i class="bi bi-lock-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" height="150px"
+                                src="{{ url_for('static', filename='assets/images/brain.webp')}}" alt="Brainstorm" />
+                            <div class="card-body p-2">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Brainstorm</h5>
+                                    <b>Type: </b>Ground<br>
+                                    <b class="text-success">Normal</b>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><b>Select this -</b><br><input
+                                        class="btn btn-outline-dark mt-auto" type="checkbox" id="ben17" name="ben17"
+                                        value="17">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" height="150px"
+                                src="{{ url_for('static', filename='assets/images/Jetray.webp')}}" alt="Jetray" />
+                            <div class="card-body p-2">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Jetray</h5>
+                                    <b>Type: </b>Air/Ground<br>
+                                    <b class="text-warning">Rare</b>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><b>Select this -</b><br><input
+                                        class="btn btn-outline-dark mt-auto" type="checkbox" id="ben18" name="ben18"
+                                        value="18">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" height="150px"
+                                src="{{ url_for('static', filename='assets/images/goom.webp')}}" alt="Goop" />
+                            <div class="card-body p-2">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Goop</h5>
+                                    <b>Type: </b>Poison<br>
+                                    <b class="text-warning">Rare</b>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><b>Select this -</b><br><input
+                                        class="btn btn-outline-dark mt-auto" type="checkbox" id="ben19" name="ben19"
+                                        value="19">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" height="150px"
+                                src="{{ url_for('static', filename='assets/images/heat.webp')}}" alt="Heatblast" />
+                            <div class="card-body p-2">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Heatblast</h5>
+                                    <b>Type: </b>Fire<br>
+                                    <b class="text-danger">Epic</b>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><b>Select this -</b><br><input
+                                        class="btn btn-outline-dark mt-auto" type="checkbox" id="ben20" name="ben20"
+                                        value="20">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" height="150px"
+                                src="{{ url_for('static', filename='assets/images/eatle.webp')}}" alt="Eatle" />
+                            <div class="card-body p-2">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Eatle</h5>
+                                    <b>Type: </b>Ground<br>
+                                    <b class="text-success">Normal</b>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><b>Select this -</b><br><input
+                                        class="btn btn-outline-dark mt-auto" type="checkbox" id="ben21" name="ben21"
+                                        value="21">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" height="150px"
+                                src="{{ url_for('static', filename='assets/images/Lodestar.webp')}}" alt="Lodestar" />
+                            <div class="card-body p-2">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Lodestar</h5>
+                                    <b>Type: </b>Magnetic<br>
+                                    <b class="text-warning">Rare</b>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><b>Select this -</b><br><input
+                                        class="btn btn-outline-dark mt-auto" type="checkbox" id="ben22" name="ben22"
+                                        value="22">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" height="150px"
+                                src="{{ url_for('static', filename='assets/images/NRG.webp')}}" alt="NRG" />
+                            <div class="card-body p-2">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">NRG</h5>
+                                    <b>Type: </b>Fire<br>
+                                    <b class="text-danger">Epic</b>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><b>Select this -</b><br><i class="bi bi-lock-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" height="150px"
+                                src="{{ url_for('static', filename='assets/images/croma.webp')}}" alt="Cromastone" />
+                            <div class="card-body p-2">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Cromastone</h5>
+                                    <b>Type: </b>Special<br>
+                                    <b class="text-danger">Epic</b>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><b>Select this -</b><br><input
+                                        class="btn btn-outline-dark mt-auto" type="checkbox" id="ben24" name="ben24"
+                                        value="24">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" height="150px"
+                                src="{{ url_for('static', filename='assets/images/clockword.webp')}}" alt="Clockword" />
+                            <div class="card-body p-2">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Clockword</h5>
+                                    <b>Type: </b>Special<br>
+                                    <b class="text-danger">Epic</b>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><b>Select this -</b><br><input
+                                        class="btn btn-outline-dark mt-auto" type="checkbox" id="ben25" name="ben25"
+                                        value="25">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" height="150px"
+                                src="{{ url_for('static', filename='assets/images/xlr8.png')}}" alt="XLR8" />
+                            <div class="card-body p-2">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">XLR8</h5>
+                                    <b>Type: </b>Ground<br>
+                                    <b class="text-success">Normal</b>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><b>Select this -</b><br><input
+                                        class="btn btn-outline-dark mt-auto" type="checkbox" id="ben26" name="ben26"
+                                        value="26">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" height="150px"
+                                src="{{ url_for('static', filename='assets/images/juryigg.webp')}}" alt="Juryigg" />
+                            <div class="card-body p-2">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Juryigg</h5>
+                                    <b>Type: </b>Special<br>
+                                    <b class="text-warning">Rare</b>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><b>Select this -</b><br><i class="bi bi-lock-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" height="150px"
+                                src="{{ url_for('static', filename='assets/images/grey.webp')}}" alt="Grey Matter" />
+                            <div class="card-body p-2">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Gray Matter</h5>
+                                    <b>Type: </b>---<br>
+                                    <b class="text-success">Normal</b>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><b>Select this -</b><br><input
+                                        class="btn btn-outline-dark mt-auto" type="checkbox" id="ben28" name="ben28"
+                                        value="28">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" height="150px"
+                                src="{{ url_for('static', filename='assets/images/stink.webp')}}" alt="Stinkfly" />
+                            <div class="card-body p-2">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Stinkfly</h5>
+                                    <b>Type: </b>Poison/Air<br>
+                                    <b class="text-success">Normal</b>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><b>Select this -</b><br><input
+                                        class="btn btn-outline-dark mt-auto" type="checkbox" id="ben29" name="ben29"
+                                        value="29">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" height="150px"
+                                src="{{ url_for('static', filename='assets/images/alienx.jpg')}}" alt="Alien X" />
+                            <div class="card-body p-2">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Alien X</h5>
+                                    <b>Type: </b>---<br>
+                                    <b class="text-danger">Epic</b>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><b>Select this -</b><br><i class="bi bi-lock-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" height="150px"
+                                src="{{ url_for('static', filename='assets/images/Sk.webp')}}" alt="Shocksqatch" />
+                            <div class="card-body p-2">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">
+                                        Shocksquatch
+                                    </h5>
+                                    <b>Type: </b>Electric<br>
+                                    <b class="text-warning">Rare</b>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><b>Select this -</b><br><i class="bi bi-lock-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" height="150px"
+                                src="{{ url_for('static', filename='assets/images/eye.webp')}}" alt="Eye Guy" />
+                            <div class="card-body p-2">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Eye Guy</h5>
+                                    <b>Type: </b>Ground<br>
+                                    <b class="text-success">Normal</b>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><b>Select this -</b><br><input
+                                        class="btn btn-outline-dark mt-auto" type="checkbox" id="ben32" name="ben32"
+                                        value="32">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" height="150px"
+                                src="{{ url_for('static', filename='assets/images/4arms.webp')}}" alt="Four Arms" />
+                            <div class="card-body p-2">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Four Arms</h5>
+                                    <b>Type: </b>Fighting<br>
+                                    <b class="text-warning">Rare</b>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><b>Select this -</b><br><input
+                                        class="btn btn-outline-dark mt-auto" type="checkbox" id="ben33" name="ben33"
+                                        value="33">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" height="150px"
+                                src="{{ url_for('static', filename='assets/images/ar.webp')}}" alt="Armpdrillo" />
+                            <div class="card-body p-2">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Armodrillo</h5>
+                                    <b>Type: </b>Steel<br>
+                                    <b class="text-warning">Rare</b>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><b>Select this -</b><br><i class="bi bi-lock-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" height="150px"
+                                src="{{ url_for('static', filename='assets/images/cm.webp')}}" alt="Chamalien" />
+                            <div class="card-body p-2">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Chamalien</h5>
+                                    <b>Type: </b>Special<br>
+                                    <b class="text-warning">Rare</b>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><b>Select this -</b><br><i class="bi bi-lock-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" height="150px"
+                                src="{{ url_for('static', filename='assets/images/Rip.webp')}}" alt="Ripjaws" />
+                            <div class="card-body p-2">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Ripjaws</h5>
+                                    <b>Type: </b>Water/Ground
+                                    <b class="text-success">Normal</b>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><b>Select this -</b><br><input
+                                        class="btn btn-outline-dark mt-auto" type="checkbox" id="ben36" name="ben36"
+                                        value="36">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <img class="card-img-top" height="150px"
+                                src="{{ url_for('static', filename='assets/images/Buzzshock.webp')}}" alt="Buzzshock" />
+                            <div class="card-body p-2">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Buzzshock</h5>
+                                    <b>Type: </b>Electric/Ground
+                                    <b class="text-success">Normal</b>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><b>Select this -</b><br><input
+                                        class="btn btn-outline-dark mt-auto" type="checkbox" id="ben37" name="ben37"
+                                        value="37">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="d-grid gap-2 col-6 mx-auto mb-3">
+            <input class="btn btn-danger" type="submit" value="Done">
+            <input class="btn btn-primary" type="reset" value="Re-Select">
+        </div>
+    </form>
+    <footer class="bg-black text-center py-4 mt-3">
+        <div class="container px-5">
+            <div class="text-white-50 small">
+                <p class="m-0 text-center text-white">Copyright &copy; Alien 10 Online 2022</p>
+                <a href="/">Previous Page</a>
+            </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
